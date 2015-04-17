@@ -1,0 +1,34 @@
+main {
+
+  h1,
+  h2 {
+    color: $primary-color-5;
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $primary-color-4;
+  }
+
+  aside {
+    h2,
+    h3 {
+      color: $accent-color-4;
+    }
+
+    h4,
+    h5,
+    h6 {
+      color: $accent-color-4;
+    }
+  }
+
+  dl {
+    dd {
+      text-indent: 12px;
+    }
+  }
+
+}
