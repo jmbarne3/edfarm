@@ -16,6 +16,7 @@ header {
 
     .navbar-nav {
       > li > a {
+        background-color: #bab17b;
         color: #2a231b;
 
         &:hover,
@@ -34,11 +35,22 @@ header {
       padding: 10px 13px;
     }
 
+    @media(max-width: 767px) {
+      .navbar-collapse {
+        position: relative;
+        top: -73px;
+      }
+    }
   }
 
   .navbar-img {
     position: relative;
     top: -65px;
+
+    @media(max-width: 767px) {
+      width: 176px;
+      height: 113px;
+    }
   }
 
   ul .navbar-nav {
