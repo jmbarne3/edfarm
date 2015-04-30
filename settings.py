@@ -111,5 +111,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_FOLDER, 'static'),
+    os.path.join(PROJECT_FOLDER, 'wsgi/static'),
 )
