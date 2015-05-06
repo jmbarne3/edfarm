@@ -10,7 +10,7 @@ header {
 
   .navbar-custom {
     background-color: #bab17b;
-    height: 50px;
+    height: 51px;
     position: relative;
     top: 75px;
 
@@ -23,6 +23,25 @@ header {
         &focus {
           background-color: #cfc8a1;
           color: #1d1813;
+        }
+      }
+    }
+
+    .nav .open>a {
+      background-color: #cfc8a1;
+      >a:hover,
+      >a:focus {
+        background-color: #cfc8a1;
+      }
+    }
+
+    .dropdown-menu {
+      background-color: #cfc8a1;
+
+      >li{
+        >a:hover,
+        >a:focus {
+          background-color: #bab17b;
         }
       }
     }

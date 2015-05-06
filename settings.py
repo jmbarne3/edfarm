@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'core',
     'retail',
+    'backend',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -113,3 +114,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_FOLDER, 'wsgi/static'),
 )
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(PROJECT_FOLDER, 'wsgi/media')
