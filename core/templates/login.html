@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+	<div class="row">
+		<div class="col-md-offset-4 col-md-4">
+			<h1>Login</h1>
+			<form id="login_form" action="" method="POST">
+				{% csrf_token %}
+				{% for field in form %}
+					{% include 'form-control-group.html' %}
+				{% endfor %}
+				<input type="submit" class="btn btn-primary btn-lg pull-right" value="Submit" />
+			</form>
+		</div>
+	</div>
+{% endblock %}
