@@ -1,0 +1,110 @@
+{% extends 'manager-base.html' %}
+{% block title %} - Manager{% endblock %}
+{% block content %}
+	<h1>Manage Home Page</h1>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-10">
+					<h2>Centerpieces</h2>
+				</div>
+				<div class="col-md-2">
+					<a href="{% url 'manager-centerpiece-create' %}"
+						class="btn btn-success btn-lg">
+						<span class="fa fa-plus"></span> New Centerpiece
+					</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<h3>Title</h3>
+				</div>
+				<div class="col-md-2">
+					<h3>Start Date</h3>
+				</div>
+				<div class="col-md-2">
+					<h3>End Date</h3>
+				</div>
+				<div class="col-md-3">
+					<h3>Image</h3>
+				</div>
+				<div class="col-md-2">
+					<h3>Actions</h3>
+				</div>
+			</div>
+			{% for centerpiece in centerpieces %}
+			<div class="row">
+				<div class="col-md-3">
+					<label>{{ centerpiece.title }}</label>
+				</div>
+				<div class="col-md-2">
+					<p>{{ centerpiece.start_date|date:"m-d-Y" }}</p>
+				</div>
+				<div class="col-md-2">
+					<p>{{ centerpiece.end_date|date:"m-d-Y" }}</p>
+				</div>
+				<div class="col-md-3">
+					<img class="img-responsive" src="{{ centerpiece.image.url }}" />
+				</div>
+				<div class="col-md-2">
+					<a href="{% url 'manager-centerpiece-update' pk=centerpiece.id %}"
+						class="btn btn-warning">
+						<span class="fa fa-pencil"></span> Edit
+					</a>
+				</div>
+			</div>
+			{% endfor %}
+			<hr />
+			<div class="row">
+				<div class="col-md-10">
+					<h2>Announcements</h2>
+				</div>
+				<div class="col-md-2">
+					<a href="{% url 'manager-announcement-create' %}"
+						class="btn btn-success btn-lg">
+						<span class="fa fa-plus"></span> New Announcement
+					</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<h3>Title</h3>
+				</div>
+				<div class="col-md-2">
+					<h3>Start Date</h3>
+				</div>
+				<div class="col-md-2">
+					<h3>End Date</h3>
+				</div>
+				<div class="col-md-3">
+					<h3>Content</h3>
+				</div>
+				<div class="col-md-2">
+					<h3>Actions</h3>
+				</div>
+			</div>
+			{% for announcement in announcements %}
+			<div class="row">
+				<div class="col-md-3">
+					<label>{{ announcement.title }}</label>
+				</div>
+				<div class="col-md-2">
+					<label>{{ announcement.start_date|date:"m-d-Y" }}</label>
+				</div>
+				<div class="col-md-2">
+					<label>{{ announcement.end_date|date:"m-d-Y" }}</label>
+				</div>
+				<div class="col-md-3">
+					<label>{{ announcement.content }}</label>
+				</div>
+				<div class="col-md-2">
+					<a href="{% url 'manager-announcement-update' pk=announcement.id %}"
+						class="btn btn-warning">
+						<span class="fa fa-pencil"></span> Edit
+					</a>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

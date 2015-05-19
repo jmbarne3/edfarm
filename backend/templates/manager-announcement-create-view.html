@@ -1,0 +1,17 @@
+{% extends 'manager-base.html' %}
+{% block title %} - Manager{% endblock %}
+{% block content %}
+	<h1>Create Announcement</h1>
+	<div class="row">
+		<div class="col-md-6">
+			<form id="create_announcement" action="" method="post">
+				{% csrf_token %}
+				{% for field in form %}
+					{% include 'form-control-group.html' %}
+				{% endfor %}
+				<input type="submit" 
+					class="btn btn-lg btn-success" value="Submit" />
+			</form>
+		</div>
+	</div>
+{% endblock %}

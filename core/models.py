@@ -1,5 +1,8 @@
 from django.db import models
 import datetime
+import re
+
+_punc_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+');
 
 # Create your models here.
 class ContentMixin(models.Model):
@@ -8,6 +11,14 @@ class ContentMixin(models.Model):
 
 	class Meta:
 		abstract = True
+
+	def generate_slug(self):
+		result = []
+		for word in _punc_re.split(self.title.lower()):
+			word = word.encode('translit/long')
+			if word:
+				result.append(word)
+		return unicode(delim.join(result))
 
 class ExpirationMixin(models.Model):
 	start_date = models.DateTimeField()
