@@ -1,0 +1,44 @@
+{% load widget_tweaks %}
+{% load filters %}
+
+
+<div class="form-group {% if field.errors %}has-error has-feedback{% endif %}">
+  {% if field|is_checkbox %}
+    <div class=" col-sm-12">
+      <div class="checkbox">
+        <label>
+          {{ field }} {{field.label}}
+        </label>
+      </div>
+      <p class="help-block">{{field.help_text}}</p>
+    </div>
+  {% else %}
+    <label for="{{field.id}}" class="control-label">{{field.label}} {% if field.field.required %}*{% endif %}</label>
+    <div class="col-sm-12">
+
+      {% if field.field.required %}
+        {% if field|is_file %}
+          {{field|attr:"required"}}
+        {% else %}
+          {{field|add_class:"form-control"|attr:"required"}}
+        {% endif %}
+      {% elif field|is_file %}
+        {{field}}
+      {% else %}
+        {{field|add_class:"form-control"}}
+      {% endif %}
+
+      {% if field.errors %}
+        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span id="inputError2Status" class="sr-only">(error)</span>
+      {% endif %}
+
+      {% if field.errors %}
+        {% for error in field.errors %}
+          <p class="alert alert-danger">{{error}}</p>
+        {% endfor %}
+      {% endif %}
+      <p class="help-block">{{field.help_text}}</p>
+    </div>
+  {% endif %}
+</div>

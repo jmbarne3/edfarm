@@ -1,0 +1,34 @@
+{% extends 'manager-base.html' %}
+{% block title %} - Manager{% endblock %}
+{% block content %}
+	<h1>Manage Home Page</h1>
+	<div class="row">
+		<div class="col-md-12">
+			<form class="clearfix" action="update-centerpiece" method="post">
+				{% csrf_token %}
+				<legend>Centerpieces</legend>
+				<div class="row">
+				{% for field in centerpiece_form %}
+					<div class="col-md-3">
+						{% include 'form-control-group.html' %}
+					</div>
+				{% endfor %}
+				</div>
+				<input class="btn btn-lg btn-primary pull-right" type="submit" value="Update" />
+			</form>
+			<hr />
+			<form class="clearfix" action="update-announcement" method="post">
+				{% csrf_token %}
+				<legend>Announcements</legend>
+				<div class="row">
+				{% for field in announcement_form %}
+					<div class="col-md-3">
+						{% include 'form-control-group.html' %}
+					</div>
+				{% endfor %}
+				</div>
+				<input class="btn btn-lg btn-primary pull-right" type="submit" value="Update" />
+			</form>
+		</div>
+	</div>
+{% endblock %}
