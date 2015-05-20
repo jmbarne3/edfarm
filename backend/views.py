@@ -5,8 +5,6 @@ from datetime import date
 from core.models import *
 from retail.models import *
 
-from .forms import *
-
 from django.views.generic.base import TemplateView, View
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView, UpdateView, CreateView
