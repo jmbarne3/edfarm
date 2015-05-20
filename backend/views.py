@@ -8,9 +8,10 @@ from retail.models import *
 from .forms import *
 
 from django.views.generic.base import TemplateView, View
+from django.views.generic.list import ListView
 from django.views.generic.edit import FormView, UpdateView, CreateView
 
-from django.forms.models import modelformset_factory
+from django.forms.models import modelformset_factory, inlineformset_factory
 
 # Create your views here.
 class ManagerHomeView(TemplateView):
@@ -48,3 +49,22 @@ class AnnouncementUpdateView(UpdateView):
 	success_url = reverse_lazy('manager-home-page')
 	template_name = 'manager-announcement-update-view.html'
 	fields = ['title', 'start_date', 'end_date', 'content']
+
+# Products
+
+class ProductListView(ListView):
+	model = Product
+	template_name = 'manager-product-list-view.html'
+
+class ProductCreateView(CreateView):
+	model = Product
+	success_url = reverse_lazy('manager-product-list')
+	template_name = 'manager-product-create-view.html'
+	fields = ['name', 'plural_name', 'description', 'image', 'regular_price']
+
+class ProductUpdateView(UpdateView):
+	model = Product
+	success_url = reverse_lazy('manager-product-list')
+	template_name = 'manager-product-update-view.html'
+	fields = ['name', 'plural_name', 'description', 'image', 'regular_price']
+
