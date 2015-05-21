@@ -22,12 +22,6 @@ if os.environ.has_key('OPENSHIFT_REPO_DIR'):
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$_%dwfyod+ik5r7l^#)=8n8bkr=l*guu+i78zyh48eo*rdj(fh'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -135,3 +129,12 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(PROJECT_FOLDER, 'wsgi/media')
+
+try:
+    from settings_local import *
+except ImportError:
+    from django.core.exceptions import ImproperlyConfigured
+    raise ImproperlyConfigured(
+        'Local settings file was not found. ' +
+        'Ensure settings_local.py exists in project root.'
+    )
