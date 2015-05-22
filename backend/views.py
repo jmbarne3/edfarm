@@ -58,9 +58,34 @@ class ProductListView(ListView):
 
 class ProductCreateView(CreateView):
 	model = Product
-	success_url = reverse_lazy('manager-product-list')
 	template_name = 'manager-product-create-view.html'
 	fields = ['name', 'plural_name', 'description', 'image']
+
+	def form_valid(self, form):
+		if self.request.POST:
+			price_form = PriceUpdateForm(self.request.POST)
+			if form.is_valid() and price_form.is_valid():
+				form.save()
+				print form.instance
+				price = Price(
+							regular_price=price_form.cleaned_data['regular_price'],
+							unit_designation=price_form.cleaned_data['unit_designation'],
+							product=form.instance)
+				price.save()
+				return super(ProductCreateView, self).form_valid(form)
+		else:
+			self.get_context_data()
+
+	def get_context_data(self, **kwargs):
+		context = super(ProductCreateView, self).get_context_data(**kwargs)
+		context['price_form'] = PriceUpdateForm
+		return context
+
+	def get_success_url(self, **kwargs):
+		return reverse_lazy('manager-product-update',
+							args=(),
+							kwargs={'pk': self.object.pk})
+
 
 class ProductUpdateView(UpdateView):
 	model = Product
@@ -76,6 +101,10 @@ class ProductUpdateView(UpdateView):
 		prices = Price.objects.filter(product=self.object)
 
 		price_form = PriceUpdateFormSet(instance=self.object)
+
+		for f in price_form:
+			for field in f:
+				print field.name
 
 		return self.render_to_response(
 			self.get_context_data(form=form,
@@ -100,6 +129,11 @@ class ProductUpdateView(UpdateView):
 											errors=price_form.errors
 					)
 				)
+
+			prices = Price.objects.filter(product=self.object)
+
+			price_form = PriceUpdateFormSet(instance=self.object)
+
 			return self.render_to_response(
 							self.get_context_data(form=form,
 													price_form=price_form

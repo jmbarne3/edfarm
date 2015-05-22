@@ -7,24 +7,43 @@
 			{{ errors }}
 		</div>
 	{% endif %}
-	<div class="row">
-		<form id="update_product" action="" method="post">
+	<form id="update_product" action="" method="post">
+		<div class="row">
 			<div class="col-md-6">
 				{% csrf_token %}
 				{% for field in form %}
 					{% include 'form-control-group.html' %}
 				{% endfor %}
-				<input type="submit" 
-					class="btn btn-lg btn-success" value="Submit" />
 			</div>
 			<div class="col-md-6">
 				{{ price_form.management_form }}
 				{% for f2 in price_form %}
+				<div class="row">
 					{% for field in f2 %}
-						{% include 'form-control-group.html' %}
+						{% if field.name == 'regular_price' %}
+							<div class="col-md-4">
+								{% include 'form-control-group.html' %}
+							</div>
+						{% elif field.name == 'unit_designation' %}
+							<div class="col-md-6">
+							 	{% include 'form-control-group.html' %}
+							</div>
+						{% elif field.name == 'DELETE' %}
+							<div class="col-md-2">
+								{% include 'form-control-group.html' %}
+							</div>
+						{% else %}
+							{% include 'form-control-group.html' %}
+						{% endif %}
 					{% endfor %}
+				</div>
 				{% endfor %}
 			</div>
-		</form>
-	</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<button type="submit" class="btn btn-success btn-lg">Update</button>
+			</div>
+		</div>
+	</form>
 {% endblock %}
