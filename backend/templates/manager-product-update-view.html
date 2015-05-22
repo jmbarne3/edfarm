@@ -2,16 +2,29 @@
 {% block title %} - Manager{% endblock %}
 {% block content %}
 	<h1>Update Product</h1>
+	{% if errors %}
+		<div class="alert alert-warning">
+			{{ errors }}
+		</div>
+	{% endif %}
 	<div class="row">
-		<div class="col-md-6">
-			<form id="update_product" action="" method="post">
+		<form id="update_product" action="" method="post">
+			<div class="col-md-6">
 				{% csrf_token %}
 				{% for field in form %}
 					{% include 'form-control-group.html' %}
 				{% endfor %}
 				<input type="submit" 
 					class="btn btn-lg btn-success" value="Submit" />
-			</form>
-		</div>
+			</div>
+			<div class="col-md-6">
+				{{ price_form.management_form }}
+				{% for f2 in price_form %}
+					{% for field in f2 %}
+						{% include 'form-control-group.html' %}
+					{% endfor %}
+				{% endfor %}
+			</div>
+		</form>
 	</div>
 {% endblock %}

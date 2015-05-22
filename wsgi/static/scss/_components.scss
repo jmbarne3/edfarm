@@ -78,6 +78,19 @@ header {
   }
 }
 
+#prices {
+  #price-help,
+  #unit-help {
+    display: none;
+    padding: 2px;
+  }
+
+  .price-data {
+    padding: 15px 5px;
+    border-bottom: 1px dotted #acacac;
+  }
+}
+
 main {
   margin-top: 50px;
 }

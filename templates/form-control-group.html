@@ -12,6 +12,8 @@
       </div>
       <p class="help-block">{{field.help_text}}</p>
     </div>
+  {% elif field|is_hidden %}
+    {{ field }}
   {% else %}
     <label for="{{field.id}}" class="control-label">{{field.label}} {% if field.field.required %}*{% endif %}</label>
     <div class="col-sm-12">

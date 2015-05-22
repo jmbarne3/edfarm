@@ -14,4 +14,5 @@ urlpatterns = patterns('',
 	url(r'^products/$', login_required(ProductListView.as_view()), name="manager-product-list"),
 	url(r'^products/create/$', login_required(ProductCreateView.as_view()), name="manager-product-create"),
 	url(r'^products/(?P<pk>\d+)/update/$', login_required(ProductUpdateView.as_view()), name="manager-product-update"),
+	#url(r'^products/(?p<pk>\d+)/stock/$', login_required(ProductStockUpdate.as_view()), name='manager-product-stock-update'),
 )

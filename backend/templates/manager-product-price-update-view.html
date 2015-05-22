@@ -1,0 +1,17 @@
+{% extends 'manager-base.html' %}
+{% block title %} - Manager{% endblock %}
+{% block content %}
+	<h1>Update Product Prices</h1>
+	<div class="row">
+		<div class="col-md-6">
+			<form id="update_product" action="" method="post">
+				{% csrf_token %}
+				{% for form in update_formset %}
+					{{ form }}
+				{% endfor %}
+				<input type="submit" 
+					class="btn btn-lg btn-success" value="Submit" />
+			</form>
+		</div>
+	</div>
+{% endblock %}

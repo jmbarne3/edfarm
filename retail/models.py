@@ -29,16 +29,20 @@ class Product(models.Model):
 	name = models.CharField(max_length=255)
 	plural_name = models.CharField(max_length=255, null=True, blank=True)
 	description = models.TextField()
-	image = models.ImageField()
+	image = models.ImageField(null=False, blank=True)
 	active = models.BooleanField(default=True)
-	regular_price = models.DecimalField(max_digits=8, decimal_places=2)
-	sales = models.ManyToManyField(Sale, blank=True)
 
 	def __str__(self):
 		return self.name
 
 	def __unicode__(self):
 		return self.name
+
+class Price(models.Model):
+	product = models.ForeignKey(Product, related_name="prices")
+	regular_price = models.DecimalField(max_digits=8, decimal_places=2)
+	unit_designation = models.CharField(max_length=25)
+	sales = models.ManyToManyField(Sale, blank=True)
 
 class Bundle(models.Model):
 	name = models.CharField(max_length=255)
